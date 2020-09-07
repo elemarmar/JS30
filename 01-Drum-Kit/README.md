@@ -84,6 +84,15 @@ Why is this that and not the window object? It's a regular function
 Changes introduced:
 
 - Gradient animated background with stars that changes colours every time a key is pressed
+  - Start on black -> each time user presses a key, start animation and change color
+
+
+
+- [ ] Change title font and make it responsive
+- [ ] Change style of keys (circles? Border collars, transition color)
+- [ ] Add description and link top left/right
+- [ ] Add copyright footer
+- [ ] Move stars from background
 
 
 

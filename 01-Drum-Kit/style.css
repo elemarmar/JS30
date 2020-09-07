@@ -1,6 +1,11 @@
 html {
   font-size: 10px;
-  background-color: #161616;
+  background: linear-gradient(219deg, #458f7c, #af3e6c, #466a91, #a74532);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 13s ease infinite;
+  -moz-animation: AnimationName 13s ease infinite;
+  animation: AnimationName 13s ease infinite;
 }
 
 body,
@@ -11,18 +16,32 @@ html {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-image: url('back.svg');
   background-position: 50% 180px;
   background-size: 800px;
   background-repeat: repeat;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 9rem;
+  margin: 0;
+  margin-bottom: 5rem;
+  padding: 0;
+  text-align: center;
+  color: #ffffff;
 }
 
 .keys {
   display: flex;
-  flex: 1;
-  min-height: 100vh;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin: 5rem;
 }
 
 .key {
@@ -55,4 +74,39 @@ kbd {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   color: #ffc600;
+}
+
+/* ANIMATIONS */
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 87% 0%;
+  }
+  50% {
+    background-position: 14% 100%;
+  }
+  100% {
+    background-position: 87% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 87% 0%;
+  }
+  50% {
+    background-position: 14% 100%;
+  }
+  100% {
+    background-position: 87% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 87% 0%;
+  }
+  50% {
+    background-position: 14% 100%;
+  }
+  100% {
+    background-position: 87% 0%;
+  }
 }
