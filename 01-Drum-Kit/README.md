@@ -84,4 +84,6 @@ Why is this that and not the window object? It's a regular function
 Changes introduced:
 
 - Gradient animated background with stars that changes colours every time a key is pressed
-- 
+
+
+
