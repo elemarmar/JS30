@@ -1,11 +1,5 @@
 html {
   font-size: 10px;
-  background: linear-gradient(219deg, #458f7c, #af3e6c, #466a91, #a74532);
-  background-size: 800% 800%;
-
-  -webkit-animation: AnimationName 13s ease infinite;
-  -moz-animation: AnimationName 13s ease infinite;
-  animation: AnimationName 13s ease infinite;
 }
 
 body,
@@ -15,6 +9,108 @@ html {
   font-family: sans-serif;
 }
 
+body {
+  background: #000000;
+  background-size: 800% 800%;
+  transition: background 1s ease;
+}
+
+.animate {
+  background: linear-gradient(219deg, #d83f7c, #3e7bbb, #6fe62a, #dbc547);
+  background-size: 800% 800%;
+  -webkit-animation: background 5s ease;
+  -moz-animation: background 5s ease;
+  animation: background 5s ease-in-out;
+  animation-iteration-count: 5;
+  animation-direction: alternate;
+}
+
+/*********
+ * HEADER
+ */
+
+.header__btn {
+  padding: 2rem;
+  margin: 1rem;
+  position: fixed;
+  top: 3rem;
+  left: 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  border: 3px #00bcdd solid;
+  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  z-index: 1;
+  transform-origin: left bottom;
+  transition: all 200ms ease-in-out;
+  background-color: #00bcdd;
+  background-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  border-image-slice: 1;
+  color: white;
+}
+
+.header__btn::before,
+.header__btn::after {
+  border: 3px #00bcdd solid;
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+/* side */
+.header__btn::before {
+  width: 0.31em;
+  height: 95%;
+  transform: skewY(-45deg);
+  border-image-slice: 1;
+  background-image: linear-gradient(45deg, #00bcdd 0%, #00bcdd 100%);
+  left: -0.75em;
+  top: 0.15em;
+}
+
+/* button */
+.header__btn::after {
+  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  width: 99%;
+  height: 0.31em;
+  transform: skewX(-45deg);
+  border-image-slice: 1;
+  background-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  bottom: -0.75em;
+  right: 0.15em;
+}
+
+/* shadow */
+.header__btn:hover {
+  background-color: white;
+  background-size: 90%;
+  transform: translate(0.5em, -0.5em);
+  background: white;
+  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  border-image-slice: 1;
+  color: rgb(16, 24, 50);
+}
+
+.header__btn:hover::before {
+  background-image: linear-gradient(
+    45deg,
+    #00bcdd 0%,
+    adjust-hue(#00bcdd, 10%) 100%
+  );
+  height: calc(100% - 0.13em);
+  height: 95%;
+}
+
+.header__btn:hover::after {
+  background-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
+  width: calc(100% - 0.13em);
+  width: 99%;
+}
+
+/*******
+ * BODY
+ */
 .container {
   display: flex;
   flex-direction: column;
@@ -25,15 +121,17 @@ html {
   background-size: 800px;
   background-repeat: repeat;
   min-height: 100vh;
+  animation: movingStars 15s linear infinite;
 }
 
 .title {
+  font-family: 'Space Mono', monospace;
   font-size: 9rem;
   margin: 0;
   margin-bottom: 5rem;
   padding: 0;
   text-align: center;
-  color: #ffffff;
+  color: #ffffffa9;
 }
 
 .keys {
@@ -45,23 +143,34 @@ html {
 }
 
 .key {
-  border: 0.4rem solid black;
-  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.4rem solid transparent;
+  border-radius: 50%;
   margin: 1rem;
   font-size: 1.5rem;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
   transition: all 0.07s ease;
   width: 10rem;
+  height: 10rem;
   text-align: center;
   color: white;
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
 }
 
+.base {
+  border: dashed 0.4rem;
+  border-color: #d83f7c73;
+}
+
 .playing {
   transform: scale(1.1);
-  border-color: #ffc600;
-  box-shadow: 0 0 1rem #ffc600;
+  border: solid;
+  border-color: #d83f7c;
+  box-shadow: 0 0 1rem #d83f7c;
 }
 
 kbd {
@@ -73,11 +182,11 @@ kbd {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  color: #ffc600;
+  color: #2ae6b7;
 }
 
 /* ANIMATIONS */
-@-webkit-keyframes AnimationName {
+@-webkit-keyframes background {
   0% {
     background-position: 87% 0%;
   }
@@ -88,7 +197,7 @@ kbd {
     background-position: 87% 0%;
   }
 }
-@-moz-keyframes AnimationName {
+@-moz-keyframes background {
   0% {
     background-position: 87% 0%;
   }
@@ -99,14 +208,21 @@ kbd {
     background-position: 87% 0%;
   }
 }
-@keyframes AnimationName {
+@keyframes background {
   0% {
     background-position: 87% 0%;
   }
-  50% {
+  100% {
     background-position: 14% 100%;
   }
+}
+
+@keyframes movingStars {
+  0% {
+    background-position: center 0%;
+  }
+
   100% {
-    background-position: 87% 0%;
+    background-position: center 100%;
   }
 }

@@ -3,19 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <title>JS Drum Kit</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Space+Mono:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
+  <header class="header">
+    <button class="header__btn">BACK TO CHALLENGES</button>
+  </header>
   <body>
     <div class="container">
       <h1 class="title">Space Beats</h1>
       <div class="keys">
-        <div data-key="65" class="key">
+        <div data-key="65" class="key base">
           <kbd>A</kbd>
-          <span class="sound">clap</span>
+          <span class="sound">base</span>
         </div>
-        <div data-key="83" class="key">
+        <div data-key="83" class="key base">
           <kbd>S</kbd>
-          <span class="sound">hihat</span>
+          <span class="sound">base 2</span>
         </div>
         <div data-key="68" class="key">
           <kbd>D</kbd>
@@ -31,33 +38,36 @@
         </div>
         <div data-key="72" class="key">
           <kbd>H</kbd>
-          <span class="sound">ride</span>
+          <span class="sound">scan</span>
         </div>
         <div data-key="74" class="key">
           <kbd>J</kbd>
-          <span class="sound">snare</span>
+          <span class="sound">error</span>
         </div>
         <div data-key="75" class="key">
           <kbd>K</kbd>
-          <span class="sound">tom</span>
+          <span class="sound">eject</span>
         </div>
         <div data-key="76" class="key">
           <kbd>L</kbd>
-          <span class="sound">tink</span>
+          <span class="sound">signal</span>
         </div>
       </div>
 
-      <audio data-key="65" src="sounds/clap.wav"></audio>
-      <audio data-key="83" src="sounds/hihat.wav"></audio>
+      <audio data-key="65" src="sounds/background.mp3"></audio>
+      <audio data-key="83" src="sounds/evolution.wav"></audio>
       <audio data-key="68" src="sounds/kick.wav"></audio>
       <audio data-key="70" src="sounds/openhat.wav"></audio>
       <audio data-key="71" src="sounds/boom.wav"></audio>
-      <audio data-key="72" src="sounds/ride.wav"></audio>
-      <audio data-key="74" src="sounds/snare.wav"></audio>
-      <audio data-key="75" src="sounds/tom.wav"></audio>
-      <audio data-key="76" src="sounds/tink.wav"></audio>
+      <audio data-key="72" src="sounds/scan.wav"></audio>
+      <audio data-key="74" src="sounds/error.wav"></audio>
+      <audio data-key="75" src="sounds/eject.wav"></audio>
+      <audio data-key="76" src="sounds/signal.ogg"></audio>
     </div>
     <script>
+      const elements = {
+        body: document.querySelector('body'),
+      };
       function playSound(ev) {
         const pressedKey = ev.keyCode;
         const audio = document.querySelector(`audio[data-key="${pressedKey}`);
@@ -71,6 +81,13 @@
 
         // Change class
         key.classList.add('playing');
+
+        if (pressedKey === 65 || pressedKey === 83) {
+          elements.body.classList.remove('animate');
+
+          void elements.body.offsetWidth;
+          elements.body.classList.add('animate');
+        }
       }
 
       function removeTransition(ev) {
@@ -78,8 +95,17 @@
         this.classList.remove('playing');
       }
 
+      function removeAnimation() {
+        elements.body.classList.remove('animate');
+      }
+
       // Event listeners
       window.addEventListener('keydown', playSound);
+
+      document
+        .querySelector('body')
+        .addEventListener('animationend', removeAnimation);
+
       const keys = document.querySelectorAll('.key');
       keys.forEach((key) =>
         key.addEventListener('transitionend', removeTransition)
