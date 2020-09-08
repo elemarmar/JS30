@@ -67,6 +67,7 @@
     <script>
       const elements = {
         body: document.querySelector('body'),
+        keys: document.querySelectorAll('.key'),
       };
       function playSound(ev) {
         const pressedKey = ev.keyCode;
@@ -82,10 +83,11 @@
         // Change class
         key.classList.add('playing');
 
+        // Apply animation if base is played
         if (pressedKey === 65 || pressedKey === 83) {
           elements.body.classList.remove('animate');
 
-          void elements.body.offsetWidth;
+          void elements.body.offsetWidth; // allows to re-start animation
           elements.body.classList.add('animate');
         }
       }
@@ -102,11 +104,9 @@
       // Event listeners
       window.addEventListener('keydown', playSound);
 
-      document
-        .querySelector('body')
-        .addEventListener('animationend', removeAnimation);
+      elements.body.addEventListener('animationend', removeAnimation);
 
-      const keys = document.querySelectorAll('.key');
+      const keys = elements.keys;
       keys.forEach((key) =>
         key.addEventListener('transitionend', removeTransition)
       );
