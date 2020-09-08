@@ -8,7 +8,7 @@ This project consists of a Drum Kit with multiple keys allowing the user to play
 
 <br >
 
-## This project allows me to practice...
+## This project allowed me to practice...
 
 - `data-*` attributes
 

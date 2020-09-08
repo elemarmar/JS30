@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS + CSS Clock</title>
-</head>
-<body>
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS + CSS Clock</title>
+  </head>
+  <body>
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
@@ -15,60 +13,107 @@
       </div>
     </div>
 
+    <style>
+      html {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.158),
+            rgba(0, 0, 0, 0.35)
+          ),
+          url(back.jpg);
+        background-size: cover;
+        font-family: 'helvetica neue';
+        text-align: center;
+        font-size: 10px;
+      }
 
-  <style>
-    html {
-      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
-      background-size: cover;
-      font-family: 'helvetica neue';
-      text-align: center;
-      font-size: 10px;
-    }
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
 
-    body {
-      margin: 0;
-      font-size: 2rem;
-      display: flex;
-      flex: 1;
-      min-height: 100vh;
-      align-items: center;
-    }
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid white;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        background: linear-gradient(135deg, #5a247a9a 20%, #1bcfdf8c 100%);
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .clock {
-      width: 30rem;
-      height: 30rem;
-      border: 20px solid white;
-      border-radius: 50%;
-      margin: 50px auto;
-      position: relative;
-      padding: 2rem;
-      box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #EFEFEF,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
-    }
+      .clock-face {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform: translateY(
+          -3px
+        ); /* account for the height of the clock hands */
+      }
 
-    .clock-face {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform: translateY(-3px); /* account for the height of the clock hands */
-    }
+      .hand {
+        width: 50%;
+        height: 6px;
+        background: black;
+        position: absolute;
+        top: 50%;
+        transform: rotate(90deg); /* so all hands start at 12:00 */
+        transform-origin: 100%;
+        transition: all 0.05s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+        border-radius: 4px;
+      }
 
-    .hand {
-      width: 50%;
-      height: 6px;
-      background: black;
-      position: absolute;
-      top: 50%;
-    }
+      .second-hand {
+        background: linear-gradient(0deg, #1c9eaa 20%, #1bcfdf 100%);
+      }
 
-  </style>
+      .min-hand {
+        background: linear-gradient(0deg, #a33d8d 20%, #bb56b6 100%);
+      }
 
-  <script>
+      .hour-hand {
+        z-index: 10;
+        width: 33%;
+        left: 17%;
+        background: linear-gradient(0deg, #0f0f0f 20%, #252325 100%);
+      }
+    </style>
 
+    <script>
+      const elements = {
+        secondHand: document.querySelector('.second-hand'),
+        minuteHand: document.querySelector('.min-hand'),
+        hourHand: document.querySelector('.hour-hand'),
+      };
 
-  </script>
-</body>
+      function setDate() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hour = now.getHours();
+
+        // seconds
+        const secondsDegrees = (seconds / 60) * 360 + 90; // because we set original deg to 90deg
+        elements.secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        // mins
+        const minutesDegrees = (minutes / 60) * 360 + 90;
+        elements.minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+        // hours
+        const hoursDegrees = (hour / 12) * 360 + 90;
+        elements.hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      }
+
+      setInterval(setDate, 1000);
+    </script>
+  </body>
 </html>
