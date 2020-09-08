@@ -6,6 +6,8 @@ This project consists of a Drum Kit with multiple keys allowing the user to play
 
 ![cover-base](cover-base.png)
 
+<br >
+
 ## This project allows me to practice...
 
 - `data-*` attributes
@@ -19,7 +21,7 @@ This project consists of a Drum Kit with multiple keys allowing the user to play
 
 ---
 
-
+<br >
 
 ## Structure
 
@@ -53,7 +55,7 @@ function removeAnimation() {
 	//...
 ```
 
-
+<br >
 
 ## Process
 
@@ -95,7 +97,7 @@ function playSound(ev) {
 - If any of the `base` type keys was pressed (keyCode 65 and 83) then remove the class `animate` (in case it was applied before) and apply it again after 
   - `void elements.body.offsetWidth` allows us to re-start the animation (more on this [here](https://css-tricks.com/restart-css-animation/))
 
-
+<br >
 
 2. **Taking care of the classes change**
 
@@ -120,5 +122,7 @@ keys.forEach((key) =>
   - We use `this` which in this case is the element that the event was run in
 
 ----
+<br>
+
 
 ℹ️ This project was based on one of Wes Bos' [JavaScript 30](https://javascript30.com/) challenges.
