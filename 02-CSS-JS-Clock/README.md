@@ -8,10 +8,11 @@ The purpose of this project was to build a simple clock with CSS and plain JavaS
 
 ## Learning
 
-S
 
-- `Date()` method
-- `transform` property
+
+- Getting the current date with the `Date()` method: extracting hours, minutes and seconds
+- Using the `transform` property to get the clock hands to move
+- Using `transition-timing-function` and `cubic-bezier` to make the movement fo the hands of the clock resemble a real clock.
 
 
 
@@ -35,7 +36,7 @@ The clock has three `div` that represent each hand of the clock:
 
 ## Process
 
-- We want the hands to rotate on the end and not from the middle -> we transform the origin (from where it is going to apply alll transformations, including rotate)
+1. We want the hands to rotate on the end and not from the middle -> we transform the origin (from where it is going to apply all transformations, including rotate)
 
 ```css
 .hand {
@@ -49,13 +50,11 @@ The clock has three `div` that represent each hand of the clock:
 }
 ```
 
-By default, `transform-origin` is 50%. 10% along the X axis, puts it on the right side.
+- By default, `transform-origin` is 50%. 10% along the X axis, puts it on the right side.
 
 
 
-
-
-Adding a transition so that the change is more "clock-like". We use `transition-timing-function` to make the movement more real
+2. Adding a transition so that the change is more "clock-like". We use `transition-timing-function` to make the movement more real
 
 ```css
 .hand {
@@ -67,35 +66,35 @@ Adding a transition so that the change is more "clock-like". We use `transition-
 
 
 
-JAVASCRIPT part
-
-
-
-Second hand:
+3. We create a function that gets all elements to make things cleaner
 
 ```js
 const elements = {
-  secondHand = document.querySelector('.second-hand');
-}
+  secondHand: document.querySelector('.second-hand'),
+  minuteHand: document.querySelector('.min-hand'),
+  hourHand: document.querySelector('.hour-hand'),
+};
 ```
 
-Create a function that gets all elements 
+4. We create the function that sets the date. We will run this function every second with `setInterval`
 
 ```js
 function setDate() {
   const now = new Date();
+
   const seconds = now.getSeconds();
-  const secondsDegrees = ((seconds / 60) * 360) + 90; // because we set original deg to 90deg
-  
-  elements.secondHand.style.transform = `rotate(${secondsDegrees}deg);
+  const minutes = now.getMinutes();
+  const hour = now.getHours();
+
+  // seconds
+  const secondsDegrees = (seconds / 60) * 360 + 90; // because we set original deg to 90deg
+  elements.secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+  // same for mins and hours....
 }
 
 setInterval(setDate, 1000);
 ```
-
-We want the function that sets the date to run every second so that we can update our clock every second
-
-Seconds now will go from 0  to 59
 
 
 
