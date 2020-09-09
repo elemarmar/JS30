@@ -33,6 +33,7 @@ The clock has three `div` that represent each hand of the clock:
 🎯 We want to rotate each `div` depending on what time it currently is.
 
 
+<br /> 
 
 ## Process
 
@@ -52,7 +53,7 @@ The clock has three `div` that represent each hand of the clock:
 
 - By default, `transform-origin` is 50%. 10% along the X axis, puts it on the right side.
 
-
+<br /> 
 
 2. Adding a transition so that the change is more "clock-like". We use `transition-timing-function` to make the movement more real
 
@@ -64,7 +65,7 @@ The clock has three `div` that represent each hand of the clock:
 }
 ```
 
-
+<br /> 
 
 3. We create a function that gets all elements to make things cleaner
 
@@ -75,6 +76,7 @@ const elements = {
   hourHand: document.querySelector('.hour-hand'),
 };
 ```
+<br /> 
 
 4. We create the function that sets the date. We will run this function every second with `setInterval`
 
