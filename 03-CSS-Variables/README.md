@@ -2,7 +2,7 @@
 
 ![cover](cover.png)
 
-The purpose of this project is to create CSS variables and manipulate them with JavaScript
+The purpose of this project is to create CSS variables and manipulate them with JavaScript.
 
 <br />
 
@@ -20,7 +20,10 @@ The purpose of this project is to create CSS variables and manipulate them with 
 🎯 Manipulating CSS variables via JavaScript
 
 1. Creating the css variables
-2. 
+2. Using them in our classes.
+3. Adding event listener to our input elements (both `change` and `mouse move`)
+4. Create a function that handles the update
+   - Remember the necessary suffix! (`px`, `%`, etc.)
 
 <br />
 
@@ -97,7 +100,7 @@ function handleUpdate() {
 
 👉🏻 **`Document.documentElement`** returns the `Element` that is the root element of the `document` (for example, the `<html>` element for HTML documents). [ref](https://developer.mozilla.org/en-US/docs/Web/API/Document/documentElement)
 
-👉🏻 The **`CSSStyleDeclaration.setProperty()`** method interface sets a new value for a property on a CSS style declaration object. [ref]()https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty
+👉🏻 The **`CSSStyleDeclaration.setProperty()`** method interface sets a new value for a property on a CSS style declaration object. [ref](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration/setProperty)
 
 
 
